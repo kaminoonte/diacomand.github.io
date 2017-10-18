@@ -146,12 +146,12 @@ section.djs .block-content .dj-block .dj {
     float: left;
     text-align: center;
     position: relative;
-    margin-top: 3px;
+   
 }
 section.djs .block-content .dj-block .dj img {
     width: 190px;
     height: 262px;
-    z-index:0;
+    z-index:0; margin-top: 3px;
 }	
 	
 section.djs .block-content .dj-block .name {
