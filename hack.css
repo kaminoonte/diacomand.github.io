@@ -117,12 +117,12 @@ div {
     margin: 0;
   position: relative;
 }	
-section.djs .block-content .day {
+section.djs .block-content .day {margin-bottom: -3px;
  background-color: #ff6000;
 }
 
 
-section.djs .block-content .part {margin-bottom: -3px;
+section.djs .block-content .part {
     display: block;
     text-align: center;
     color: white;
@@ -162,7 +162,7 @@ section.djs .block-content .dj-block .name {
   background: rgba(0, 0, 0, 0.9); 
     line-height: 40px; z-index:9999;
 }	
-section.djs .block-content .night {
+section.djs .block-content .night {margin-bottom: -3px;
     
     background-color: #151720;
 }	
