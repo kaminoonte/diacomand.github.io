@@ -122,7 +122,7 @@ section.djs .block-content .day {
 }
 
 
-section.djs .block-content .part {
+section.djs .block-content .part {margin-bottom: -3px;
     display: block;
     text-align: center;
     color: white;
@@ -146,12 +146,12 @@ section.djs .block-content .dj-block .dj {
     float: left;
     text-align: center;
     position: relative;
-   
+   margin-top: 3px;
 }
 section.djs .block-content .dj-block .dj img {
     width: 190px;
     height: 262px;
-    z-index:0; margin-top: 3px;
+    z-index:0; 
 }	
 	
 section.djs .block-content .dj-block .name {
