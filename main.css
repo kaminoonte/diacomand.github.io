@@ -327,7 +327,7 @@ nav.main-menu ul li a:hover {
 
 .menu-close-btn {
     background-color: transparent;
-    background-image: url("../img/cross.png");
+    background-image: url("/cross.png");
     background-position: center center;
     background-size: cover;
     border: medium none;
