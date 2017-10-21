@@ -53,44 +53,44 @@
 
 /*--=== Reset Css ===-*/
 
-@import url('css/normalize.css');
+@import url('/normalize.css');
 
 /*--=== Skillsbar ===-*/
 
-@import url('css/plugins/skills.css');
+@import url('/skills.css');
 
 /*--=== Timeline ===-*/
 
-@import url('css/plugins/timeline.css');
+@import url('/timeline.css');
 
 /*--=== Animate ===-*/
 
-@import url('css/plugins/animate.css');
+@import url('/animate.css');
 
 /*--=== Hover Animation ===-*/
 
-@import url('css/plugins/hover-min.css');
+@import url('/hover-min.css');
 
 /*--=== Fontawesome icon ===-*/
 
-@import url('css/font-awesome.min.css');
+@import url('/font-awesome.min.css');
 
 /*--=== Owl carousel ===-*/
 
-@import url('css/plugins/owl.carousel.min.css');
+@import url('/owl.carousel.min.css');
 
 /*--=== Magnific PopUp ===-*/
 
-@import url('css/plugins/magnific-popup.css');
+@import url('/magnific-popup.css');
 
 /*--=== Bootstrap ===-*/
 
-@import url('css/bootstrap.min.css');
+@import url('/bootstrap.min.css');
 
 /*--=== Author Custom Css ===-*/
 
-@import url('css/main.css');
+@import url('/main.css');
 
 /*--=== Responsive Css ===-*/
 
-@import url('css/responsive.css');
+@import url('/responsive.css');
