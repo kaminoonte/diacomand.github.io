@@ -897,7 +897,7 @@ nav.main-menu ul li a:hover {
 }
 
 .portfolio-container {
-    background-image: url("../img/portfolio/port-bg.jpg");
+    background-image: url("/port-bg.jpg");
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -1209,15 +1209,15 @@ nav.main-menu ul li a:hover {
 }
 
 .blog-thum-1 {
-    background-image: url(../img/blog/blog-thum-1.jpg)
+    background-image: url()
 }
 
 .blog-thum-2 {
-    background-image: url(../img/blog/blog-thum-2.jpg)
+    background-image: url()
 }
 
 .blog-thum-3 {
-    background-image: url(../img/blog/blog-thum-3.jpg)
+    background-image: url()
 }
 
 .blog-thum {
