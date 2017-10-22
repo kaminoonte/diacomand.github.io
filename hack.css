@@ -1,4 +1,4 @@
-﻿	::-webkit-scrollbar-track
+::-webkit-scrollbar-track
 {
  -webkit-box-shadow: inset 0 0 0px rgba(0,0,0,0.1);
  background-color: none;
@@ -111,7 +111,7 @@ div {
     display: block;
 }	
 
-.block-content {background-color: #ff6000;
+.block-content {background-color: white;
     display: block;
     padding: 0;
     margin: 0;
@@ -159,7 +159,7 @@ section.djs .block-content .dj-block .name {
     height: 39px;
     margin-top: -8px;
    border-bottom: 1px solid #ff6000; 
-  background: rgba(0, 0, 0, 0.9); 
+  background: black; 
     line-height: 40px; z-index:9999;
 }	
 section.djs .block-content .night {margin-bottom: -4px;
