@@ -24,9 +24,12 @@
 }
 .head1 {
     width: 950px !important;
-    height: 437px;
-
+    height: 400px !important;
     overflow: hidden;
+}
+.head1 .content {
+    margin-top: 37px !important;
+    margin-left: 37px;
 }
 .player_grid table.all-stations td {
     border: 1px #f5f5f5 solid;
