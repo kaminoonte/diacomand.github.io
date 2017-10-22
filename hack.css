@@ -23,7 +23,7 @@
     min-height: 100%;
 }
 .head1 {
-    width: 950px;
+    width: 950px !important;
     height: 437px;
 
     overflow: hidden;
