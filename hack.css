@@ -27,7 +27,7 @@
     height: 400px !important;
     overflow: hidden;
 }
-.head1 .content {
+#page-about .head1 .content {
     margin-top: 37px !important;
     margin-left: 37px;
 }
