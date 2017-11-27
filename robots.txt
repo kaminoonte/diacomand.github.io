@@ -1,3 +1,12 @@
 User-Agent: *
-Disallow:
-Host: http://radio.telepubl.ru
+Host: radio.telepubl.ru
+User-agent: MediaPartners-Google
+Disallow: /redirect/
+Allow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: Twitterbot
+Disallow: /redirect/
+Allow: /
