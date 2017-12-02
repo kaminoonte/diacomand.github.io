@@ -29,7 +29,7 @@
 }
 #page-about .head1 .content {
     margin-top: 0px !important;
-    margin-left: 0px;
+    margin-left: 0px !important;
 }
 .player_grid table.all-stations td {
     border: 1px #f5f5f5 solid;
