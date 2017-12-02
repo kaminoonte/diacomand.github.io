@@ -22,12 +22,12 @@
     min-width: 950px;
     min-height: 100%;
 }
-.head1 {background-color: rgb(141,93,114);
+.head1 {background-color: #4d7198;
     width: 950px !important;
     height: 100% !important;
     overflow: hidden;
 }
-#bottom .head1 .content {background-color: rgb(141,93,114);
+#bottom .head1 .content {background-color: #4d7198;
     margin-top: 0px !important;
     margin-left: 0px !important;
 }
