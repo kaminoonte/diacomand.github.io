@@ -735,7 +735,19 @@ background-color: #4CAF50!important;
 	
 	<section id="bottom"><div class="head1"><div class="content">
 		
-	<iframe src="//vk.com/video_ext.php?oid=-1959&id=456240061&hash=b5b9dbc326d74444&hd=1" width="950" height="500" frameborder="0" allowfullscreen></iframe>	
+	<iframe src="//vk.com/video_ext.php?oid=-1959&id=456240061&hash=b5b9dbc326d74444&hd=1" width="950" height="500" frameborder="0" allowfullscreen></iframe>
+		<!-- Put this script tag to the <head> of your page -->
+<script type="text/javascript" src="//vk.com/js/api/openapi.js?150"></script>
+
+<script type="text/javascript">
+  VK.init({apiId: 5454128, onlyWidgets: true});
+</script>
+
+<!-- Put this div tag to the place, where the Comments block will be -->
+<div id="vk_comments"></div>
+<script type="text/javascript">
+VK.Widgets.Comments("vk_comments", {limit: 20, attach: "*"});
+</script>
 		</div></div></section></div>
 <script>
 function isMobile($device){
