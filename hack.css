@@ -36,7 +36,15 @@
     text-align: -webkit-center;
     text-align: center;
 }	
-	
+	.index-wrap header .player .like_in::before {
+    content: ' ';
+    position: absolute;
+    z-index: 205;
+    left: 77px;
+    top: 0px;
+    border: 0px solid transparent;
+    border-bottom: 0px solid #222325;
+}
 	
 .index-wrap header .player .wrapper {
     width: 950px;
