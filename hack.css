@@ -45,7 +45,9 @@
     border: 0px solid transparent;
     border-bottom: 0px solid #222325;
 }
-	
+
+div.like_in::before {display:none !important;}
+
 .index-wrap header .player .wrapper {
     width: 950px;
     height: 55px;
