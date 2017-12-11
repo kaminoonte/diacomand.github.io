@@ -52,7 +52,7 @@ div.like_in::before {display:none !important;}
     width: 950px;
     height: 55px;
     margin: 0 auto;
-    position: relative;
+    position: fixed;
 }	
 	
 	.index-wrap .container1 {
