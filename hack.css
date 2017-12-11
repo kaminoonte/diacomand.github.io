@@ -59,7 +59,7 @@ div.like_in::before {display:none !important;}
     width: 950px;
     margin: 0 auto;
     position: relative;
-    margin-top: 85px;
+    margin-top: 55px;
    margin-bottom: 0px;
 }
 .block-header, .news_list_index .block-header, aside .block-header {
