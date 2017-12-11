@@ -60,7 +60,7 @@ div.like_in::before {display:none !important;}
     margin: 0 auto;
     position: relative;
     margin-top: 85px;
-   margin-bottom: 20px;
+   margin-bottom: 0px;
 }
 .block-header, .news_list_index .block-header, aside .block-header {
 background-color: #fafbfc;
