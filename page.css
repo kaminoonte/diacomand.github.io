@@ -13,7 +13,7 @@
 #page-title-area {
     background-image: url("/page3_bg.png") !important;
     background-position: center center;
-    background-repeat: repeat;
+    background-repeat: repeat !important;
     background-size: auto !important;
     padding: 80px 0;
     position: relative;
